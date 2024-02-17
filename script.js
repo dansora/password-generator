@@ -124,12 +124,7 @@ function getPasswordOptions() {
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-  var allCharacters = specialCharacters.concat(
-    numericCharacters,
-    lowerCasedCharacters,
-    upperCasedCharacters
-  );
-  var listOfChar = demoPassword.chars();
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 // create a list of Char that stores all the characters, numbers and special characters
@@ -142,6 +137,7 @@ function getRandom(arr) {
 function generatePassword() {
   var pwOptions = getPasswordOptions();
   var finalCharPoolArr = [];
+  var generatedPassword = "";
 
   if (pwOptions.isSpecial) {
     finalCharPoolArr.push(...specialCharacters);
@@ -155,6 +151,12 @@ function generatePassword() {
   if (pwOptions.isUpperCase) {
     finalCharPoolArr.push(...upperCasedCharacters);
   }
+
+  for (let i = 0; i < pwOptions.pwLength; i++) {
+    generatedPassword += getRandom(finalCharPoolArr);
+  }
+
+  return generatedPassword
 }
 
 // Get references to the #generate element
