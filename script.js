@@ -108,7 +108,18 @@ function getPasswordOptions() {
   var isUpperCase = confirm(
     "Do you want your pw to contain uppercase characters?"
   );
+  if ((!isSpecial, !isNumber, !isLowerCase, !isUpperCase)) {
+    alert("please make sure you choose at least one type of char");
+    return;
+  }
 
+  return {
+    pwLength: pwLength,
+    isSpecial: isSpecial,
+    isNumber: isNumber,
+    isLowerCase: isLowerCase,
+    isUpperCase: isUpperCase,
+  };
 }
 
 // Function for getting a random element from an array
@@ -129,7 +140,21 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions();
+  var pwOptions = getPasswordOptions();
+  var finalCharPoolArr = [];
+
+  if (pwOptions.isSpecial) {
+    finalCharPoolArr.push(...specialCharacters);
+  }
+  if (pwOptions.isNumber) {
+    finalCharPoolArr.push(...numericCharacters);
+  }
+  if (pwOptions.isLowerCase) {
+    finalCharPoolArr.push(...lowerCasedCharacters);
+  }
+  if (pwOptions.isUpperCase) {
+    finalCharPoolArr.push(...upperCasedCharacters);
+  }
 }
 
 // Get references to the #generate element
