@@ -90,13 +90,25 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var pwLength = prompt('How long should your password be? Please choose a length between 8 and 128 characters')
-  var isSpecial = confirm('Do you want your pw to contain special characters?')
-  var isNumber = confirm('Do you want your pw to contain number characters?')
-  var isLowerCase = confirm('Do you want your pw to contain lowercase characters?')
-  var isUpperCase = confirm('Do you want your pw to contain uppercase characters?')
+  var pwLength = prompt(
+    "How long should your password be? Please choose a length between 8 and 128 characters"
+  );
+  pwLength = parseInt(pwLength);
 
-  console.log(pwLength, isSpecial, isNumber, isLowerCase, isUpperCase)
+  if (isNaN(pwLength) || pwLength < 8 || pwLength > 128) {
+    alert("please make sure you input a wp length between 8 and 128");
+    return;
+  }
+
+  var isSpecial = confirm("Do you want your pw to contain special characters?");
+  var isNumber = confirm("Do you want your pw to contain number characters?");
+  var isLowerCase = confirm(
+    "Do you want your pw to contain lowercase characters?"
+  );
+  var isUpperCase = confirm(
+    "Do you want your pw to contain uppercase characters?"
+  );
+
 }
 
 // Function for getting a random element from an array
@@ -111,16 +123,13 @@ function getRandom(arr) {
 
 // create a list of Char that stores all the characters, numbers and special characters
 
-
 // use shuffle() method of the Collections to shuffle the list elements
 
 //generate a random string(secure password) by using list stream() method and collect() method
 
-
 // Function to generate password with user input
 function generatePassword() {
-  getPasswordOptions()
-  
+  getPasswordOptions();
 }
 
 // Get references to the #generate element
